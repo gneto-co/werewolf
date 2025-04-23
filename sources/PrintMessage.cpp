@@ -5,6 +5,9 @@ PrintMessage OutMessage;
 PrintMessage::PrintMessage() {}
 PrintMessage::~PrintMessage() {}
 
+bool PrintMessage::getSkipTime() { return skipTime(); }
+void PrintMessage::setSkipTime(bool v) { skipTime() = v; }
+
 void PrintMessage::out(int role_id, std::string msg)
 {
     std::ostringstream oss;
@@ -55,28 +58,38 @@ void PrintMessage::out(int type)
     }
     if (type == TIME00)
     {
-        // Utils::wait(300);
-        Utils::wait(0050);
+        if (getSkipTime() == false)
+            Utils::wait(300);
+        else
+            Utils::wait(0050);
     }
     if (type == TIME0)
     {
-        // Utils::wait(1000);
-        Utils::wait(0050);
+        if (getSkipTime() == false)
+            Utils::wait(1000);
+        else
+            Utils::wait(0050);
     }
     if (type == TIME1)
     {
-        // Utils::wait(1500);
-        Utils::wait(0050);
+        if (getSkipTime() == false)
+            Utils::wait(1500);
+        else
+            Utils::wait(0050);
     }
     if (type == TIME2)
     {
-        // Utils::wait(2000);
-        Utils::wait(0050);
+        if (getSkipTime() == false)
+            Utils::wait(2000);
+        else
+            Utils::wait(0050);
     }
     if (type == TIME3)
     {
-        // Utils::wait(2500);
-        Utils::wait(0050);
+        if (getSkipTime() == false)
+            Utils::wait(2500);
+        else
+            Utils::wait(0050);
     }
     if (type == VILLAGE_TEAM_VICTORY)
     {

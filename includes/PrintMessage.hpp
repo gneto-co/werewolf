@@ -45,8 +45,16 @@ public:
     static void out(std::ostringstream oss);
     static void out(Village &v);
 
+    static bool getSkipTime();
+    static void setSkipTime(bool);
+
 private:
     // METHODS
+    static bool &skipTime()
+    {
+        static bool skip_time = false;
+        return skip_time;
+    }
 
     static void printMethod(std::string str);
 };

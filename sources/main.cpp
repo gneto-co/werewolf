@@ -1,5 +1,6 @@
 #include "../includes/Village.hpp"
 #include "../includes/CallRoles.hpp"
+#include "../includes/PrintMessage.hpp"
 
 static int getNumber(int min, int max)
 {
@@ -158,9 +159,10 @@ static void game_menu()
 		std::cout << "(0) back" << std::endl;
 		std::cout << "(1) showing cards by dead [" << (g_showing_cards_by_dead ? "ON" : "OFF") << "]" << std::endl;
 		std::cout << "(2) showing roles on chat [" << (g_showing_roles_on_chat ? "ON" : "OFF") << "]" << std::endl;
+		std::cout << "(3) skip wait time on messages [" << (PrintMessage::getSkipTime() ? "ON" : "OFF") << "]" << std::endl;
 
 		std::cout << RESET;
-		switch (getNumber(0, 2))
+		switch (getNumber(0, 3))
 		{
 		case 0:
 			return;
@@ -170,6 +172,9 @@ static void game_menu()
 			break;
 		case 2:
 			g_showing_roles_on_chat = g_showing_roles_on_chat ? false : true;
+			break;
+		case 3:
+			PrintMessage::setSkipTime(PrintMessage::getSkipTime() ? false : true);
 			break;
 		default:
 			break;

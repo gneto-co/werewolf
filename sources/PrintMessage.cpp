@@ -117,7 +117,7 @@ void PrintMessage::out(int type, int day_count)
     {
         OutMessage << LOW_BRIGHT ITALICS << "Start the day";
         Utils::pressAnyKey();
-        oss << CLEAR_SCREEN;
+        Utils::clearScreen();
         oss << BLUE << std::endl;
         oss << "  ▗▄▄▄  ▗▄▖▗▖  ▗▖" << std::endl;
         oss << "  ▐▌  █▐▌ ▐▌▝▚▞▘ " << std::endl;
@@ -129,7 +129,7 @@ void PrintMessage::out(int type, int day_count)
     {
         OutMessage << LOW_BRIGHT ITALICS << "Start the night";
         Utils::pressAnyKey();
-        oss << CLEAR_SCREEN;
+        Utils::clearScreen();
         oss << RED << std::endl;
         oss << "  ▗▖  ▗▖▗▄▄▄▖ ▗▄▄▖▗▖ ▗▖▗▄▄▄▖" << std::endl;
         oss << "  ▐▛▚▖▐▌  █  ▐▌   ▐▌ ▐▌  █  " << std::endl;

@@ -68,7 +68,6 @@
 #define CLEAR_LINE_FORWARD_CURSOR "\033[K"
 #define CLEAR_LINE_BACK_CURSOR "\033[1K"
 #define CLEAR_ACTUAL_LINE "\033[0K"
-#define CLEAR_SCREEN "\033[2J\033[H"
 
 // Reset
 #define RESET "\033[0m"

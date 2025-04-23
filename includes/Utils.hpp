@@ -8,11 +8,13 @@
 #include <unistd.h>
 #include <chrono>
 #include <thread>
+#include <cstdlib> 
 
 class Utils
 {
 public:
 	// methods
+
 	static void pressAnyKey()
 	{
 		std::cout << LOW_BRIGHT << "...";
@@ -28,10 +30,16 @@ public:
 
 		tcsetattr(STDIN_FILENO, TCSANOW, &old_terminal);
 	}
+
 	// 1000 ms = 1 sec
 	static void wait(int nb)
 	{
 		std::this_thread::sleep_for(std::chrono::milliseconds(nb));
+	}
+
+	static void clearScreen()
+	{
+		system("clear");
 	}
 
 	template <typename T>

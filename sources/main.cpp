@@ -84,7 +84,7 @@ static void players_menu()
 {
 	while (true)
 	{
-		std::cout << CLEAR_SCREEN;
+		Utils::clearScreen();
 
 		Utils::printVectorIndex(g_names);
 		std::cout << std::endl;
@@ -114,7 +114,7 @@ static void players_menu()
 		default:
 			break;
 		}
-		std::cout << CLEAR_SCREEN;
+		Utils::clearScreen();
 	}
 }
 
@@ -122,7 +122,7 @@ static void roles_menu()
 {
 	while (true)
 	{
-		std::cout << CLEAR_SCREEN;
+		Utils::clearScreen();
 
 		Utils::printVectorIndex(RoleData::getRolesNamesList());
 		std::cout << std::endl;
@@ -144,7 +144,7 @@ static void roles_menu()
 		default:
 			break;
 		}
-		std::cout << CLEAR_SCREEN;
+		Utils::clearScreen();
 	}
 }
 
@@ -152,7 +152,7 @@ static void game_menu()
 {
 	while (true)
 	{
-		std::cout << CLEAR_SCREEN;
+		Utils::clearScreen();
 		std::cout << ITALICS LOW_BRIGHT << "choose an option" << RESEND;
 		std::cout << GREEN;
 		std::cout << "(0) back" << std::endl;
@@ -174,7 +174,7 @@ static void game_menu()
 		default:
 			break;
 		}
-		std::cout << CLEAR_SCREEN;
+		Utils::clearScreen();
 	}
 }
 
@@ -185,7 +185,7 @@ static void start_menu()
 	Utils::pressAnyKey();
 	for (size_t i = 0; i < g_names.size(); i++)
 	{
-		std::cout << CLEAR_SCREEN;
+		Utils::clearScreen();
 		Utils::printVectorIndex(RoleData::getRolesNamesList());
 		std::cout << GREEN;
 		std::cout << "Set the " << g_names[i] << " role" << std::endl;
@@ -196,7 +196,7 @@ static void start_menu()
 	bool confirm = false;
 	while (confirm == false)
 	{
-		std::cout << CLEAR_SCREEN;
+		Utils::clearScreen();
 		printPlayersRoles(g_names, roles_list);
 		std::cout << ITALICS LOW_BRIGHT << "choose an option" << RESEND;
 		std::cout << GREEN;
@@ -245,7 +245,7 @@ int main()
 {
 	while (true)
 	{
-		std::cout << CLEAR_SCREEN;
+		Utils::clearScreen();
 
 		std::cout << ITALICS LOW_BRIGHT << "choose an option" << RESEND;
 		std::cout << GREEN;

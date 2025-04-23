@@ -38,8 +38,6 @@ void CallRoles::call(int role)
     case WEREWOLF:
         callWerewolf(*p);
         break;
-    case DRUNK:
-        callDrunk(*p);
         break;
     case SEER:
         callSeer(*p);
@@ -79,7 +77,7 @@ void CallRoles::callWerewolf(Player &p)
         Player &target_player = targetPlayer(p);
 
         // if target is protected by BODYGUARD do nothing
-        if (_village.getPlayerByRoleCard(BODYGUARD)->getTargetId() == target_player.getId())
+        if (_village.usingRole(BODYGUARD) && _village.getPlayerByRoleCard(BODYGUARD)->getTargetId() == target_player.getId())
             ;
         // if target is the CURSED he joins werewolves team
         else if (target_player.getRole() == CURSED)
@@ -135,23 +133,6 @@ void CallRoles::callVillage()
     }
 
     PrintMessage::out(TIME0);
-}
-
-void CallRoles::callDrunk(Player &p)
-{
-    int role = p.getRole();
-    if (_night_count == 3)
-    {
-        PrintMessage::out(role, "open your eyes");
-
-        // drunk is called to find is role
-        if (p.getStatus() == ALIVE)
-            PrintMessage::out(WAIT);
-        else
-            PrintMessage::out(DEBUG_MESSAGE, "just pretending to be alive");
-
-        PrintMessage::out(role, "close your eyes");
-    }
 }
 
 void CallRoles::callCursed(Player &p)

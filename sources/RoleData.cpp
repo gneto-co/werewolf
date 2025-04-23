@@ -5,7 +5,13 @@ static Role getRoleInfo(int);
 RoleData::RoleData()
 {
     for (int i = UNKNOW + 1; i < END_ROLE; i++)
+    {
         _roles[i] = getRoleInfo(i);
+    }
+    for (auto &kv : _roles)
+    {
+        _roles_names_list.push_back(kv.second.name);
+    }
 }
 
 const Role &RoleData::getInfo(int id)
@@ -13,11 +19,18 @@ const Role &RoleData::getInfo(int id)
     return getInstance()._roles[id];
 }
 
+int RoleData::getRolesAmount()
+{
+    return getInstance()._roles.size();
+}
+
 RoleData &RoleData::getInstance()
 {
     static RoleData instance;
     return instance;
 }
+
+std::vector<std::string> &RoleData::getRolesNamesList() { return getInstance()._roles_names_list; }
 
 static Role getRoleInfo(int id)
 {
@@ -43,6 +56,7 @@ static Role getRoleInfo(int id)
         role.village_impact = +7;
         role.team = VILLAGE_TEAM;
         role.can_target_it_self = false;
+        role.wake_at_night = true;
         break;
 
     case CURSED:
@@ -51,8 +65,9 @@ static Role getRoleInfo(int id)
         role.role = CURSED;
         role.village_impact = -3;
         role.team = VILLAGE_TEAM;
+        role.wake_at_night = true;
         break;
-        
+
     case BODYGUARD:
         role.name = "Bodyguard";
         role.role_card = BODYGUARD;
@@ -61,6 +76,7 @@ static Role getRoleInfo(int id)
         role.team = VILLAGE_TEAM;
         role.can_target_twice_in_row = false;
         role.can_target_it_self = false;
+        role.wake_at_night = true;
         break;
 
     case PRINCE:
@@ -79,14 +95,6 @@ static Role getRoleInfo(int id)
         role.team = VILLAGE_TEAM;
         break;
 
-    case DRUNK:
-        role.name = "Drunk";
-        role.role_card = DRUNK;
-        role.role = UNKNOW;
-        role.village_impact = +4;
-        role.team = VILLAGE_TEAM;
-        break;
-
     case SPELL_CASTER:
         role.name = "Spell Caster";
         role.role_card = SPELL_CASTER;
@@ -94,6 +102,7 @@ static Role getRoleInfo(int id)
         role.village_impact = +4;
         role.team = VILLAGE_TEAM;
         role.can_target_twice_in_row = false;
+        role.wake_at_night = true;
         break;
 
         // WEREWOLF TEAM
@@ -106,6 +115,7 @@ static Role getRoleInfo(int id)
         role.team = WEREWOLF_TEAM;
         role.can_target_it_self = false;
         role.can_target_same_team_players = false;
+        role.wake_at_night = true;
         break;
 
         // OTHER TEAMS

@@ -41,7 +41,6 @@ private:
 	// METHODS
 
 	void callWerewolf(Player &);
-	void callDrunk(Player &);
 	void callSeer(Player &);
 	void callBodyguard(Player &);
 	void callSpellCaster(Player &);

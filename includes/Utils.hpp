@@ -34,6 +34,25 @@ public:
 		std::this_thread::sleep_for(std::chrono::milliseconds(nb));
 	}
 
+	template <typename T>
+	static void printVectorIndex(std::vector<T> &v)
+	{
+		for (size_t i = 0; i < v.size(); i++)
+		{
+			std::cout << i << " - " << v[i] << std::endl;
+		}
+	}
+
+	template <typename T1, typename T2>
+	static void printVectorSideToSide(std::vector<T1> &v1, std::vector<T2> &v2)
+	{
+		size_t size = (v1.size() < v2.size() ? v1.size() : v2.size());
+		for (size_t i = 0; i < size; i++)
+		{
+			std::cout << i << " - " << v1[i] << " - " << v2[i] << std::endl;
+		}
+	}
+
 private:
 	Utils();
 	~Utils();

@@ -1,6 +1,12 @@
 #include "../includes/Village.hpp"
 
-Village::Village(int players, std::vector<int> roles_list) : _players_amount(players), _roles(roles_list) { gameReset(); }
+Village::Village(int players, std::vector<int> roles_list) : _players_amount(players), _roles(roles_list)
+{
+    _day_count = 0;
+    _werewolves_victim_id = 0;
+    _showing_cards_by_dead = -1;
+    _showing_roles_on_chat = -1;
+}
 
 Village::~Village() {}
 
@@ -10,6 +16,8 @@ void Village::startGame()
 {
     PrintMessage::out(DEBUG_MESSAGE, "Checking village data...");
     PrintMessage::out(TIME3);
+    if (_players_amount <= 1)
+        throw std::runtime_error("You need to add some players");
     if (_players.size() != _players_amount)
         throw std::runtime_error("Players are not all ready");
     if (_showing_cards_by_dead == -1)
@@ -55,7 +63,6 @@ void Village::night()
     PrintMessage::out(ENTER);
 
     // night calls in priority order
-    r.call(DRUNK);
     r.call(CURSED);
     r.call(SEER);
     r.call(BODYGUARD);
@@ -173,28 +180,14 @@ void Village::setNewPlayer(int player_id, int role_id, std::string name)
 {
     Player p(role_id, player_id, name);
 
-    if (role_id == DRUNK)
-        p.setRole(_drunk_role);
-
     _players[player_id] = p;
 }
 
-void Village::setDrunkRole(int role) { _drunk_role = role; }
-
-void Village::setShowingCardsByDeath(bool value) { _showing_cards_by_dead = value; }
+void Village::setShowingCardsByDead(bool value) { _showing_cards_by_dead = value; }
 
 void Village::setShowingRolesOnChat(bool value) { _showing_roles_on_chat = value; }
 
 void Village::setWerewolvesVictimId(int id) { _werewolves_victim_id = id; }
-
-void Village::gameReset()
-{
-    _day_count = 0;
-    _showing_cards_by_dead = -1;
-    _showing_roles_on_chat = -1;
-    _drunk_role = UNKNOW;
-    _werewolves_victim_id = 0;
-}
 
 /* GETTERS */
 
@@ -209,6 +202,8 @@ int Village::getPlayersCount() { return _players_amount; }
 int Village::getShowingCardsByDead() { return _showing_cards_by_dead; }
 
 int Village::getShowingRolesOnChat() { return _showing_roles_on_chat; }
+
+std::vector<int> Village::getRolesList() { return _roles; }
 
 // return the number of (role) alive players in the game
 int Village::getRoleAmount(int role)

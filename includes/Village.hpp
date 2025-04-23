@@ -27,8 +27,7 @@ public:
 	// SETTERS
 
 	void setNewPlayer(int id, int role, std::string name);
-	void setDrunkRole(int);
-	void setShowingCardsByDeath(bool);
+	void setShowingCardsByDead(bool);
 	void setShowingRolesOnChat(bool);
 	void setWerewolvesVictimId(int);
 
@@ -41,6 +40,7 @@ public:
 	Player *getWerewolvesVictim();
 	int getShowingCardsByDead();
 	int getShowingRolesOnChat();
+	std::vector<int> getRolesList();
 	std::map<int, Player> &getPlayersList();
 
 private:
@@ -59,10 +59,6 @@ private:
 	int _showing_roles_on_chat;
 	int _werewolves_victim_id;
 
-	// special roles information
-
-	int _drunk_role;
-
 	// METHODS
 
 	void gameLoop();
@@ -73,7 +69,6 @@ private:
 	int getRoleAmount(int role);
 	int getTeamAmount(int role);
 	int getAlivePlayersAmount();
-	void gameReset();
 	void printMethod(std::string str);
 };
 
